@@ -1,64 +1,86 @@
+<?php
+$firstname = $_POST['firstname'] ?? '';
+$lastname  = $_POST['lastname'] ?? '';
+$phone     = $_POST['phone'] ?? '';
+$address   = $_POST['address'] ?? '';
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Form Mahasiswa</title>
+
     <style>
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #ff5f6d, #ffc371);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: Arial;
+            background-color: #f2f2f2;
+            padding: 40px;
         }
 
-        .card {
-            background: white;
-            padding: 30px;
-            width: 320px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            text-align: center;
+        .container {
+            width: 600px;
+            margin: auto;
         }
 
         input, textarea {
             width: 100%;
             padding: 10px;
             margin: 8px 0;
-            border: none;
-            border-radius: 8px;
-            background: #f1f1f1;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
 
-        button {
-            margin-top: 10px;
-            padding: 10px;
-            width: 100%;
-            border: none;
+        textarea {
+            height: 100px;
+        }
+
+        .btn {
+            display: block;
+            margin: 15px auto;
+            padding: 8px 20px;
             border-radius: 20px;
-            background: #ff5f6d;
+            border: none;
+            background-color: #5aa9e6;
             color: white;
-            font-weight: bold;
             cursor: pointer;
         }
 
-        button:hover {
-            background: #e14b5a;
+        .hasil {
+            margin-top: 30px;
+        }
+
+        .reset {
+            margin-top: 10px;
+            display: inline-block;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h2>Input Data</h2>
-    <form action="proses.php" method="POST">
+<div class="container">
+
+    <!-- FORM -->
+    <form method="POST">
         <input type="text" name="firstname" placeholder="Firstname" required>
         <input type="text" name="lastname" placeholder="Lastname" required>
         <input type="text" name="phone" placeholder="Phone Number" required>
         <textarea name="address" placeholder="Address" required></textarea>
-        <button type="submit">Submit</button>
+
+        <button class="btn">Submit</button>
     </form>
+
+    <!-- HASIL -->
+    <?php if ($firstname): ?>
+    <div class="hasil">
+        <p><b>Hi, my name is <?php echo $firstname . " " . $lastname; ?></b></p>
+        <p>Phone Number : <?php echo $phone; ?></p>
+        <p>Address : <?php echo $address; ?></p>
+
+        <a href="index.php" class="reset">Reset</a>
+    </div>
+    <?php endif; ?>
+
 </div>
 
 </body>
